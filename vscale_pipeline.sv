@@ -379,5 +379,19 @@ module vscale_pipeline(
      (alu_op == `ALU_OP_ADD) |=> (alu_out == (alu_src_a + alu_src_b));
   endproperty
   assert property (add_op) else $error("ADD operation erorr");
+	  
+  // AND operation assertion                     
+  property and_op;
+    @(posedge clk) 
+    (alu_op == `ALU_OP_AND) |-> (alu_out == (alu_src_a & alu_src_b));
+  endproperty
+  assert property (and_op) else $error("AND operation erorr");
 
+ // SUB operation assertion
+  property sub_op;
+    @(posedge clk)
+     (alu_op == `ALU_OP_SUB) |=> (alu_out == (alu_src_a - alu_src_b));
+  endproperty
+  assert property (sub_op) else $error("SUB operation erorr");
+	  
 endmodule // vscale_pipeline
