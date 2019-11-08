@@ -394,5 +394,12 @@ module vscale_pipeline(
      (alu_op === `ALU_OP_ADD) |=> (alu_out === (alu_src_a + alu_src_b));
   endproperty
   assert property (add_op) else $error("ADD operation erorr");
+	  
+// SLL operation assertion
+ property sll_op;
+  @(posedge clk)
+  (alu_op === `ALU_OP_SLL) |-> (alu_out === (alu_src_a << alu_src_b));
+ endproperty
+ assert property (sll_op) else $error("SLL Operation error");
 
 endmodule // vscale_pipeline
